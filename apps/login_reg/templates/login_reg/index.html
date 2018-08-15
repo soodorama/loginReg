@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Login &amp; Reg | Home</title>
+</head>
+<body>
+    <h2>Registration</h2>
+    <form action="{% url 'register' %}" method="POST">
+        {% csrf_token %}
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name">
+        <br>
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name">
+        <br>
+        <label for="reg_email">Email:</label>
+        <input type="text" name="reg_email">
+        <br>
+        <label for="reg_pw">Password:</label>
+        <input type="text" name="reg_pw">
+        <br>
+        <label for="confirm">Confirm:</label>
+        <input type="text" name="confirm">
+        <br>
+        <input type="submit" value="Register">
+    </form>
+    <h2>Login</h2>
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <label for="login_email">Email:</label>
+        <input type="text" name="login_email">
+        <br>
+        <label for="login_pw">Password:</label>
+        <input type="text" name="login_pw">
+        <br>
+        <input type="submit" value="Login">
+    </form>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <a href="{% url 'logout' %}">RESET</a>
+</body>
+</html>
